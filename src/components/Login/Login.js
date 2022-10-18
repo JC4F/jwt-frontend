@@ -1,6 +1,6 @@
 import './Login.scss';
 import {useHistory} from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {toast} from 'react-toastify';
 import { loginUser } from '../../services/userService';
 
@@ -43,6 +43,7 @@ function Login(props) {
             }
             sessionStorage.setItem('account', JSON.stringify(data));
             history.push('/users');
+            window.location.reload();
             //redux
 
         }
@@ -52,6 +53,13 @@ function Login(props) {
             toast.error(response.data.EM);
         }
     };
+    useEffect(()=>{
+        let session = sessionStorage.getItem('account');
+        if(session){
+            history.push('/');
+            window.location.reload();
+        }
+    },[])
     return (  
         <div className="login-container">
             <div className="container">
