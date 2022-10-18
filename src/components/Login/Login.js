@@ -32,7 +32,25 @@ function Login(props) {
             return;
         }
 
-        await loginUser(valueLogin, password);
+        let response = await loginUser(valueLogin, password);
+        console.log(response);
+
+        if(response && response.data && +response.data.EC===0){
+            //success
+            let data = {
+                isAuthenticated: true,
+                token: 'fake-token'
+            }
+            sessionStorage.setItem('account', JSON.stringify(data));
+            history.push('/users');
+            //redux
+
+        }
+
+        if(response && response.data && +response.data.EC!==0){
+            //error
+            toast.error(response.data.EM);
+        }
     };
     return (  
         <div className="login-container">

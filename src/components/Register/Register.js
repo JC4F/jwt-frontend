@@ -1,6 +1,5 @@
 import { useHistory } from 'react-router-dom';
 import './Register.scss';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { registerNewUser } from '../../services/userService';
