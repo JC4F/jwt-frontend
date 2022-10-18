@@ -3,6 +3,7 @@ import './Register.scss';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import { registerNewUser } from '../../services/userService';
 
 function Register(props) {
     const [email, setEmail] = useState("");
@@ -59,10 +60,17 @@ function Register(props) {
         return true;
     }
 
-    const handleRegister = () => {
+    const handleRegister = async() => {
         let check = isValidInputs()
         if(check){
-            axios.post('http://localhost:8080/api/v1/register', {email, phone, username, password})
+            let reponse = await registerNewUser(email, phone, username, password)
+            let serverData = reponse.data;
+            if(+serverData.EC === 0){
+                toast.success(serverData.EM)
+                history.push("/login")
+            }else {
+                toast.error(serverData.EM)
+            }
         }
     }
     return (  
