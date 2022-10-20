@@ -50,7 +50,7 @@ function Login(props) {
                 token,
                 account: {groupWithRoles, email, username}
             }
-            sessionStorage.setItem('account', JSON.stringify(data));
+            // sessionStorage.setItem('account', JSON.stringify(data));
             loginContext(data);
             history.push('/users');
             // window.location.reload();
@@ -63,13 +63,13 @@ function Login(props) {
             toast.error(response.EM);
         }
     };
-    useEffect(()=>{
-        let session = sessionStorage.getItem('account');
-        if(session){
-            history.push('/');
-            window.location.reload();
-        }
-    },[])
+    // useEffect(()=>{
+    //     let session = sessionStorage.getItem('account');
+    //     if(session){
+    //         history.push('/');
+    //         window.location.reload();
+    //     }
+    // },[])
     return (  
         <div className="login-container">
             <div className="container">
