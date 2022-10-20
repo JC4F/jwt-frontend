@@ -1,10 +1,12 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import {
     Route, useHistory
 } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
 
 const PrivateRoutes = (props) => {
     let history = useHistory();
+    const {user} = useContext(UserContext);
     useEffect(()=>{
         let session = sessionStorage.getItem('account');
         if(!session){
