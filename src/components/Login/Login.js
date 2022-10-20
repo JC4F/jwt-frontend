@@ -35,7 +35,7 @@ function Login(props) {
         let response = await loginUser(valueLogin, password);
         console.log(response);
 
-        if(response && response.data && +response.data.EC===0){
+        if(response && +response.EC===0){
             //success
             let data = {
                 isAuthenticated: true,
@@ -48,9 +48,9 @@ function Login(props) {
 
         }
 
-        if(response && response.data && +response.data.EC!==0){
+        if(response && +response.EC!==0){
             //error
-            toast.error(response.data.EM);
+            toast.error(response.EM);
         }
     };
     useEffect(()=>{
