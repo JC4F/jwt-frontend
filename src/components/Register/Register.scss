@@ -10,6 +10,9 @@
             text-transform: uppercase;
             font-size: 30px;
             color: #1877f2;
+            a{
+                text-decoration: none;
+            }
         }
 
         .details {
@@ -36,6 +39,15 @@
 
             &:hover {
                 text-decoration: underline;
+            }
+        }
+        .return {
+            a{
+                text-decoration: none;
+            }
+
+            span {
+                padding-left: 7px;
             }
         }
     }

@@ -51,4 +51,16 @@
             }
         }
     }
+    .nav-link {
+        &.active {
+            color: #61dafb !important;
+            border-bottom: 2px solid;
+        }
+    }
+
+    .dropdown-menu {
+        a {
+            color: #212529 !important;
+        }
+    }
 }

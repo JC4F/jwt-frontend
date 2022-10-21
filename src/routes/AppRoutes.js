@@ -28,6 +28,9 @@ const AppRoute = (props) => {
                 <Route path="/register">
                     <Register/>
                 </Route>
+                <Route path="/about" exact>
+                    about
+                </Route>
                 <Route path="/" exact>
                     home
                 </Route>
