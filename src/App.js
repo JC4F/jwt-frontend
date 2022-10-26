@@ -5,8 +5,7 @@ import {
 } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import _ from 'lodash';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import AppRoute from './routes/AppRoutes';
 import { UserContext } from './context/UserContext';
 import { Rings } from 'react-loader-spinner';

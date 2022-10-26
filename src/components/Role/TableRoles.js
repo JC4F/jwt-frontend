@@ -7,7 +7,7 @@ const TableRole = forwardRef((props, ref) => {
 
     useEffect(()=>{
         getAllRoles();
-    })
+    },[])
     
     useImperativeHandle(ref, ()=>({
         fetListRolesAgain(){

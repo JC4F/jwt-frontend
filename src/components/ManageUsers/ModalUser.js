@@ -170,7 +170,7 @@ const ModalUser = (props) => {
                         <div className='col-12 col-sm-12 form-group'>
                             <label>Address :</label>
                             <input className={validInputs.address ? 'form-control': 'form-control is-invalid'} 
-                                type='text' value={userData.address}
+                                type='text' value={userData.address? userData.address:''}
                                 onChange={(e)=>handleOnchangeInput(e.target.value, 'address')}
                             />
                         </div>
@@ -207,7 +207,7 @@ const ModalUser = (props) => {
                 <Modal.Footer>
                     <Button variant="secondary" onClick={()=> handleCloseModalUser()}>Close</Button>
                     <Button variant="primary" onClick={()=> handleConfirmUser()}>
-                        {action === 'CREATE' ? 'Save':'Create'}
+                        {action === 'CREATE' ? 'Create':'Save'}
                     </Button>
                 </Modal.Footer>
             </Modal>

@@ -44,7 +44,7 @@ instance.interceptors.response.use(
 
       // forbidden (permission related issues)
       case 403: {
-        return Promise.reject(err);
+        return err.response.data;
       }
 
       // bad request

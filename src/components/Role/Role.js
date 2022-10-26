@@ -1,5 +1,5 @@
 import './Role.scss';
-import _, { set } from 'lodash';
+import _ from 'lodash';
 import {v4 as uuidv4} from 'uuid';
 import { useRef, useState } from 'react';
 import { toast } from 'react-toastify';
@@ -39,7 +39,7 @@ const Role = (props) => {
     const buildDataToPersist = ()=>{
         let _listChilds = _.cloneDeep(listChilds);
         let results = [];
-        Object.keys(_listChilds).map(([ket, child], index)=>{
+        Object.keys(_listChilds).forEach(([ket, child], index)=>{
             results.push({
                 url: child.url,
                 description: child.description

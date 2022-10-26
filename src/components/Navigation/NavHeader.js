@@ -1,8 +1,8 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import './Nav.scss';
 import { Link, NavLink, useHistory, useLocation } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
-import { Container, Navbar, NavDropdown } from "react-bootstrap";
+import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import logo from '../../logo.svg';
 import { toast } from "react-toastify";
 import { logoutUser } from "../../services/userService";
@@ -52,7 +52,7 @@ function NavHeader(props) {
                                     <NavLink to="/about" className="nav-link">About</NavLink>
                                 </Nav>
                                 <Nav>
-                                    {user && user.isAuthenticated == true?
+                                    {user && user.isAuthenticated === true?
                                         <>
                                             <Nav.Item className='nav-link'>
                                                 Welcome {user.account.username} !

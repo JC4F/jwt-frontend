@@ -1,4 +1,4 @@
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import './Register.scss';
 import { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
@@ -55,7 +55,7 @@ function Register(props) {
             setObjCheckInput({...defaultValidInput, isValidPassword: false});
             return false;
         }
-        if(password != confirmPassword){
+        if(password !== confirmPassword){
             toast.error("Your password is not the same");
             setObjCheckInput({...defaultValidInput, isValidConfirmPassword: false});
             return false;

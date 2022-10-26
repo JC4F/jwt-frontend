@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { deleteUser, fetchAllUser } from '../../services/userService';
 import ReactPaginate from 'react-paginate';
 import './Users.scss';
@@ -125,7 +124,7 @@ const Users = (props) => {
                                                     <td>{item.Group ? item.Group.name : ''}</td>
                                                     <td>
                                                         <span title='Edit' className='edit'
-                                                            onClick={() => handleDeleteUser(item)}
+                                                            onClick={() => handleEditUser(item)}
                                                             ><i className='fa fa-pencil'></i>
                                                         </span>
                                                         <span title='Delete' className='delete'

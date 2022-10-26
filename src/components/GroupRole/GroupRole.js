@@ -2,6 +2,7 @@ import _ from "lodash";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { assignRolesToGroup, fetchAllRole, fetchRolesByGroup } from "../../services/RoleService";
+import { fetchGroup } from "../../services/userService";
 
 const GroupRole = () => {
     const [userGroups, setUserGroups] = useState([]);
@@ -12,7 +13,7 @@ const GroupRole = () => {
     useEffect(()=>{
         getGroups();
         getAllRoles();
-    })
+    }, [])
 
     const getGroups=async()=>{
         let res = await fetchGroup();
@@ -31,7 +32,7 @@ const GroupRole = () => {
     }
 
     const handleOnchangeGroup=async(value)=>{
-        setListRoles(value);
+        setSelectGroup(value);
         if(value){
             let data = await fetchRolesByGroup(value);
             if(data && +data.EC===0){
@@ -48,7 +49,7 @@ const GroupRole = () => {
                 let object = {};
                 object.url = role.url;
                 object.id = role.id;
-                object.description = role.idescriptiond;
+                object.description = role.description;
                 object.isAssigned = false;
                 if(groupRoles && groupRoles.length > 0){
                     object.isAssigned = groupRoles.some(item=>item.url === object.url);
@@ -57,6 +58,7 @@ const GroupRole = () => {
                 result.push(object);
             })
         }
+        return result;
     }
 
     const handleSelectRole = (value)=>{
