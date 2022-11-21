@@ -1,21 +1,23 @@
-import React, { useContext } from "react";
+import React from "react";
 import './Nav.scss';
 import { Link, NavLink, useHistory, useLocation } from "react-router-dom";
-import { UserContext } from "../../context/UserContext";
 import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import logo from '../../logo.svg';
 import { toast } from "react-toastify";
 import { logoutUser } from "../../services/userService";
+import { useDispatch, useSelector } from "react-redux";
+import {logoutContext} from "../../redux/slices/userSlice";
 
 function NavHeader(props) {
-    const {user, logoutContext} = useContext(UserContext);
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.user)
     let location = useLocation();
     const history = useHistory();
 
     const handleLogout = async()=>{
         let data = await logoutUser();
         localStorage.removeItem('jwt');
-        logoutContext();
+        dispatch(logoutContext());
 
         if(data && +data.EC === 0){
             toast.success('Log out succeed...');

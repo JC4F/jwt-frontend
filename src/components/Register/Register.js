@@ -1,12 +1,12 @@
 import { Link, useHistory } from 'react-router-dom';
 import './Register.scss';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { registerNewUser } from '../../services/userService';
-import { UserContext } from '../../context/UserContext';
+import { useSelector } from 'react-redux';
 
 function Register(props) {
-    const {user} = useContext(UserContext);
+    const user = useSelector(state => state.user)
 
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");

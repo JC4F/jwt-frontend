@@ -5,13 +5,41 @@ import {
 } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useContext } from 'react';
 import AppRoute from './routes/AppRoutes';
-import { UserContext } from './context/UserContext';
 import { Rings } from 'react-loader-spinner';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getUserAccount } from './services/userService';
+import {loginContext, logoutContext} from "./redux/slices/userSlice";
 
 function App() {
-  const {user} = useContext(UserContext);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+
+  const fetchUser = async ()=> {
+    let response = await getUserAccount();
+    if(response && response.EC === 0){
+        let groupWithRoles = response.DT.groupWithRoles
+        let email = response.DT.email
+        let username = response.DT.username
+        let token = response.DT.token
+
+        let data = {
+            isAuthenticated: true,
+            token,
+            account: {groupWithRoles, email, username},
+            isLoading: false
+        }
+        dispatch(loginContext(data))
+    } else {
+      dispatch(logoutContext())
+    }
+  }
+
+  useEffect(()=>{
+    fetchUser();
+  },[])
+
   return (
     <>
       <Router>

@@ -5,14 +5,15 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
-import {UserProvider} from './context/UserContext';
+import store from "./redux/store";
+import { Provider } from "react-redux";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <UserProvider>
-      <App />
-    </UserProvider>
-  </React.StrictMode>,
+    <Provider store={store}>
+      <React.StrictMode>
+          <App />
+      </React.StrictMode>
+    </Provider>,
   document.getElementById('root')
 );
 

@@ -1,13 +1,15 @@
 import './Login.scss';
 import {Link, useHistory} from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {toast} from 'react-toastify';
 import { loginUser } from '../../services/userService';
-import { UserContext } from '../../context/UserContext';
+import { useDispatch, useSelector } from 'react-redux';
+import {loginContext} from "../../redux/slices/userSlice";
 
 
 function Login(props) {
-    const {user, loginContext} = useContext(UserContext);
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.user)
     let history = useHistory();
 
     const [valueLogin, setValueLogin] = useState("");
@@ -43,7 +45,7 @@ function Login(props) {
             let groupWithRoles = response.DT.groupWithRoles;
             let email = response.DT.email;
             let username = response.DT.username;
-            let token = response.DT.token;
+            let token = response.DT.access_token;
 
             let data = {
                 isAuthenticated: true,
@@ -51,7 +53,7 @@ function Login(props) {
                 account: {groupWithRoles, email, username}
             }
             localStorage.setItem("jwt", token);
-            loginContext(data);
+            dispatch(loginContext(data));
             history.push('/users');
             // window.location.reload();
             //redux
